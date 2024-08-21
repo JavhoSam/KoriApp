@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="KoriApp.Views.Login"
+             Title="Login">
+    <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="White">
+
+        <StackLayout Padding="10" HorizontalOptions="FillAndExpand" Margin="40,100,40,20">
+            <Image Source="loginlogo.png"/>
+            <Label Text="Bienvenid@ a KoriApp" FontSize="25" TextColor="Black" HorizontalOptions="CenterAndExpand" Margin="10"/>
+            <Label Text="Inicia sesión para comenzar" FontSize="15" TextColor="gray" HorizontalOptions="CenterAndExpand" Margin="10"/>
+        </StackLayout>
+
+        <StackLayout Margin="30,0,30,0">
+            <Border Padding="0" Margin="5" StrokeShape="RoundRectangle 10,10,10,10">
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="✉️" Margin="10"/>
+                    <BoxView WidthRequest="1" Color="Black"/>
+                    <Entry x:Name="TbxMail" Placeholder="Correo" TextColor="Black" HorizontalTextAlignment="Center" HorizontalOptions="CenterAndExpand" Margin="0,0,0,-9"/>
+                </StackLayout>
+            </Border>
+
+            <Border Padding="0" Margin="5" StrokeShape="RoundRectangle 10,10,10,10">
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="🔒" Margin="10"/>
+                    <BoxView WidthRequest="1" Color="Black"/>
+                    <Entry Completed="TbxPass_Completed" x:Name="TbxPass" Placeholder="Contraseña" Margin="0,0,0,-8" TextColor="Black" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" IsPassword="True"/>
+                </StackLayout>
+            </Border>
+        </StackLayout>
+
+        <StackLayout VerticalOptions="Start">
+            <Label x:Name="LblStatus" HorizontalTextAlignment="Center" TextColor="Red"/>
+            <Grid Margin="5,70,5,5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Button x:Name="BtnLogin" Clicked="BtnLogin_Clicked" Grid.Row="0" Text="Ingresar" WidthRequest="150" BackgroundColor="#1770ff" TextColor="White" CornerRadius="20"/>
+                <ActivityIndicator x:Name="Process" Grid.Row="0"/>
+            </Grid>
+        </StackLayout>
+
+        <StackLayout VerticalOptions="CenterAndExpand" Margin="20">
+            <Grid RowSpacing="25">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <BoxView HeightRequest="1" Color="White" Grid.Row="0"/>
+                <Label Grid.Row="0" Margin="0,0,0,3" Text="¿No tienes una cuenta?" BackgroundColor="White" TextColor="Black" HorizontalOptions="CenterAndExpand"/>
+                <Button Grid.Row="1" x:Name="BtnRegister" Clicked="BtnRegister_Clicked" Text="¡Registrate ahora!" BackgroundColor="White" TextColor="Black" BorderColor="Black" BorderWidth="1"/>
+            </Grid>
+        </StackLayout>
+    </StackLayout>
+</ContentPage>

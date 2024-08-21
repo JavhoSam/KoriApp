@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:Convertidor ="clr-namespace:KoriApp.Converters"
+             x:Class="KoriApp.Views.Profile">
+
+    <ContentPage.Resources>
+        <Convertidor:VisibilityConverter x:Key="Convertidor"/>
+        <Convertidor:LikeConverter x:Key="LikeConverter"/>
+    </ContentPage.Resources>
+
+    <ScrollView>
+        <StackLayout BackgroundColor="White" Padding="5">
+
+        <Grid x:Name="ColorBanner" HorizontalOptions="FillAndExpand" BackgroundColor="Wheat">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <ImageButton Aspect="Center" x:Name="BtnUserPic" Grid.Row="0" BorderColor="White" BorderWidth="3" HorizontalOptions="CenterAndExpand" Source="user.png" WidthRequest="130" HeightRequest="130" BackgroundColor="AntiqueWhite" CornerRadius="65" Margin="0,50,0,-40"/>
+        </Grid>
+
+        <StackLayout Margin="0,40,0,0">
+            <Label x:Name="LblUserName" FontSize="30" Text="User" TextColor="Black" HorizontalOptions="CenterAndExpand"/>
+            <Label x:Name="LblUserMail" Text="Mail" TextColor="Gray" HorizontalOptions="CenterAndExpand"/>
+        </StackLayout>
+
+        <Label Margin="20" x:Name="LblUserDesc" TextColor="Black" HorizontalTextAlignment="Center" HorizontalOptions="Center">
+            <Label.GestureRecognizers>
+                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+            </Label.GestureRecognizers>
+        </Label>
+        
+        <BoxView HeightRequest="1" Color="Gray" Margin="0,10,0,10"/>
+
+        <Label x:Name="LblSub" HorizontalOptions="CenterAndExpand" Text="Publicaciones de User" TextColor="Black" FontSize="15" FontAttributes="Bold"/>
+
+        <BoxView HeightRequest="1" Color="Gray" Margin="0,10,0,10"/>
+
+        <CollectionView x:Name="ClvPublicaciones" ItemsSource="{Binding Publicaciones}" BackgroundColor="LightGray">
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout Orientation="Vertical" Span="1" VerticalItemSpacing="8"/>
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+
+                    <StackLayout HorizontalOptions="FillAndExpand" BackgroundColor="White">
+                        <StackLayout Orientation="Horizontal">
+                            <ImageButton x:Name="BtnPostProfile" BorderColor="Black" BorderWidth="1" Margin="5" Aspect="Center" Source="{Binding UserPic}" CornerRadius="25" WidthRequest="50" HeightRequest="50" BackgroundColor="Bisque"/>
+                            <StackLayout>
+                                <Label VerticalOptions="Start" HorizontalOptions="Start" Text="{Binding Usuario}" FontSize="15" TextColor="Black" FontAttributes="Bold" Margin="5"/>
+                                <Label VerticalOptions="End" HorizontalOptions="Start" Text="{Binding Hash, StringFormat='#{0}'}" FontSize="15" TextColor="Gray" FontAttributes="Bold" Margin="5"/>
+                            </StackLayout>
+                            <Button Text="⋯" x:Name="BtnPostOptions" Clicked="BtnPostOptions_Clicked" Padding="0" CommandParameter="{Binding ID}" BackgroundColor="Transparent" FontSize="35" HorizontalOptions="EndAndExpand" IsVisible="{Binding UiD, Converter={StaticResource Convertidor}}"/>
+                        </StackLayout>
+
+                        <Image HorizontalOptions="FillAndExpand" Source="{Binding PicURL}" HeightRequest="400" Aspect="AspectFill" BackgroundColor="Black" Margin="5"/>
+                        <Label HorizontalOptions="StartAndExpand" Text="{Binding Desc}" FontSize="15" TextColor="#333333" FontAttributes="Bold" Margin="5"/>
+
+                        <StackLayout Orientation="Horizontal" Margin="5">
+                            <Image Source="heart.png" WidthRequest="15" Margin="0,0,5,0"/>
+                            <Label Text="{Binding Likes}" TextColor="Black" HorizontalOptions="Start" />
+                            <BoxView WidthRequest="1" Margin="10,0,10,0"/>
+                            <Image Source="comment.png" WidthRequest="15" Margin="0,0,5,0" HorizontalOptions="Start"/>
+                            <Label Text="{Binding Comentarios}" TextColor="Black" HorizontalOptions="Start"/>
+                        </StackLayout>
+
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="End" Spacing="15">
+                            <ImageButton x:Name="BtnLike" Clicked="BtnLike_Clicked" CommandParameter="{Binding ID}" Source="{Binding IsLikedByCurrentUser, Converter={StaticResource LikeConverter}}" WidthRequest="30" Padding="0" Margin="5"/>
+                            <ImageButton x:Name="BtnComment" Clicked="BtnComment_Clicked" CommandParameter="{Binding ID}" Source="comment.png" WidthRequest="30" Padding="0" Margin="5"/>
+                        </StackLayout>
+                    </StackLayout>
+
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </StackLayout>
+    </ScrollView>
+    
+</ContentPage>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<mopups:PopupPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:mopups="clr-namespace:Mopups.Pages;assembly=Mopups"
+             x:Class="KoriApp.Views.RegisterPopUp" BackgroundColor="#80000000" CloseWhenBackgroundIsClicked="True">
+    <StackLayout VerticalOptions="CenterAndExpand" BackgroundColor="White" Margin="15" Padding="15">
+
+        <Label Text="Crea tu cuenta" TextColor="Black" FontSize="Medium" HorizontalTextAlignment="Center" HorizontalOptions="CenterAndExpand"/>
+        <BoxView HeightRequest="1" Color="Gray" Margin="0,10,0,10"/>
+
+        <Frame Padding="0" Margin="5">
+            <Entry x:Name="TbxMail" Placeholder="Correo" TextColor="Black" HorizontalTextAlignment="Center" Margin="0,0,0,-8"/>
+        </Frame>
+
+        <Frame Padding="0" Margin="5">
+            <Entry x:Name="TbxUser" Placeholder="Usuario" TextColor="Black" HorizontalTextAlignment="Center" Margin="0,0,0,-8"/>
+        </Frame>
+
+        <Frame Padding="0" Margin="5">
+            <Entry x:Name="TbxPass" Placeholder="Contraseña" Margin="0,0,0,-8" TextColor="Black" HorizontalTextAlignment="Center" IsPassword="True"/>
+        </Frame>
+
+        <Frame Padding="-9" HorizontalOptions="Center" Margin="10" WidthRequest="100" HeightRequest="100">
+            <Image Aspect="AspectFill" x:Name="ImgUserPic" Source="user.png" HorizontalOptions="FillAndExpand"  Margin="10" />
+        </Frame>
+
+        <Button Text="Escoger foto" x:Name="BtnChoosePic" Clicked="BtnChoosePic_Clicked" HorizontalOptions="FillAndExpand" TextColor="Black" BorderColor="Black" BorderWidth="1" BackgroundColor="White"/>
+        
+
+        <Label x:Name="LblStatus" HorizontalTextAlignment="Center" TextColor="Red"/>
+
+        <Grid Margin="5,30,5,5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Button x:Name="BtnRegistro" Clicked="BtnRegistro_Clicked" Grid.Row="0" Text="Registrarte" WidthRequest="150" BackgroundColor="#1770ff" CornerRadius="25" TextColor="White"/>
+            <ActivityIndicator Grid.Row="0" x:Name="Processor" Color="Red"/>
+        </Grid>
+
+    </StackLayout>
+</mopups:PopupPage>
